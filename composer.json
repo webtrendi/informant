@@ -3,7 +3,7 @@
     "description": "Collection of classes to define expected input and build forms",
     "autoload": {
         "psr-0": {
-            "Informant\\": "src/",
+            "Informant\\": "src/"
         }
     }
 }
