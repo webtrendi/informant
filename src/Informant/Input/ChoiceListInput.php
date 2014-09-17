@@ -38,8 +38,8 @@ class ChoiceListInput extends BaseInput
      * @since  2014-05-09
      * @author Patrick Forget <patforg@geekpad.ca>
      */
-    public function addChoice($label, $key = null) {
-        $this->addToList('choices', $label, $key);
+    public function addChoice($label, $value = null) {
+        $this->addToList('choices', $label, $value);
     } // addInstruction()
 
     /**
