@@ -33,13 +33,13 @@ class ChoiceListInput extends BaseInput
     } // getDefaultValues()
 
     /**
-     * adds choice message
+     * adds choice key values
      *
      * @since  2014-05-09
      * @author Patrick Forget <patforg@geekpad.ca>
      */
-    public function addChoice($message, $key = null) {
-        $this->addToList('choices', $message, $key);
+    public function addChoice($label, $key = null) {
+        $this->addToList('choices', $label, $key);
     } // addInstruction()
 
     /**
