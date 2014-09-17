@@ -39,6 +39,10 @@ class HtmlInputFormatter implements FormatterInterface
             'value' => ($input->getValue() === null ? $input->getDefaultValue() : $input->getValue()),
         );
 
+        if ($input->getMultipleValues() === true) {
+            $attributes['name'] .= '[]';
+        } //if
+
         if (isset($options['attributes'])) {
             $attributes = array_merge($attributes, $options['attributes']);
         } //if
