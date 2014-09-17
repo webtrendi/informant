@@ -8,6 +8,8 @@
 
 namespace Informant\Formatter\HtmlBasic;
 
+use Informant\Utility\HtmlHelper as h;
+
 /**
  * Builds Text type input element
  *
@@ -17,5 +19,50 @@ namespace Informant\Formatter\HtmlBasic;
 class SelectInputFormatter extends \Informant\Formatter\HtmlListInputFormatter
 {
 
+    /**
+     * @since  2014-09-17
+     * @author Patrick Forget <patforg@geekpad.ca>
+     */
+    public function format(\Informant\Input\BaseElement $input, $options=array()) {
 
+        $value = ($input->getValue() === null ? $input->getDefaultValue() : $input->getValue());
+
+        ob_start();
+        foreach ($input->getChoices() as $key => $label) {
+            $optionAttributes = array(
+                'value' => $key
+            );
+
+            if ($key == $value) {
+                $optionAttributes['selected'] = 'true';
+            } //if
+
+            echo h::tag('option', array(
+                'attributes' => $optionAttributes,
+                'content' => $label
+            ));
+        } //foreach
+        $options = ob_get_contents();
+        ob_end_clean();
+
+        $attributes = array(
+            'id' => $input->getId(),
+            'name' => $input->getId(),
+        );
+
+        if ($input->getMultipleValues() === true) {
+            $attributes['multiple'] = 'true';
+            $attributes['name'] .= '[]';
+        } //if
+        
+        if (isset($options['attributes'])) {
+            $attributes = array_merge($attributes, $options['attributes']);
+        } //if
+
+        return h::tag('select', array(
+            'attributes' => $attributes,
+            'content' => $options,
+            'rawContent' => true
+        ));
+    } // format()
 } //  SelectInputFormatter class
