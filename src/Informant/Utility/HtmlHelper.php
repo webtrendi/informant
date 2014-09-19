@@ -40,9 +40,20 @@ class HtmlHelper
      *   - rawContent boolean if set to true, content will not be escaped
      *   - closing boolean do we need a closing tag or not, if content is provided a closing tag will be output by default.
      *   - shortClosing boolean use short closing tag
+     *   - prependContent string code to put before the tag
+     *   - appendContent string code to put after the tag
      */
     public static function tag($name, $options = array()) {
         ob_start();
+
+        if (isset($options['prependContent'])) {
+            if (isset($options['rawPrepend']) && $options['rawPrepend']) {
+                echo $options['prependContent'];
+            } else {
+                echo htmlspecialchars($options['prependContent'], ENT_NOQUOTES|ENT_HTML5, 'UTF-8');
+            } //if
+        } //if
+
         echo "<{$name}";
         $attributes = isset($options['attributes']) ? $options['attributes'] : array();
 
@@ -74,6 +85,14 @@ class HtmlHelper
 
         if ($closing) {
             echo "</{$name}>";
+        } //if
+
+        if (isset($options['appendContent'])) {
+            if (isset($options['rawAppend']) && $options['rawAppend']) {
+                echo $options['appendContent'];
+            } else {
+                echo htmlspecialchars($options['appendContent'], ENT_NOQUOTES|ENT_HTML5, 'UTF-8');
+            } //if
         } //if
 
         $tag = ob_get_contents();
