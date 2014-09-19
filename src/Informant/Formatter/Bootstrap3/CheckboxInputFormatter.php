@@ -19,17 +19,5 @@ use Informant\Utility\HtmlHelper as h;
 class CheckboxInputFormatter extends \Informant\Formatter\Base\BaseCheckboxInputFormatter
 {
 
-    /**
-     * @since  2014-05-09
-     * @author Patrick Forget <patforg@geekpad.ca>
-     */
-    public function format(\Informant\Input\BaseElement $input, $options=array()) {
-
-        return h::tag('label', array(
-            'content' => parent::format($input, $options) . ' ' . $input->getLabel(),
-            'rawContent' => true, 
-        ));
-
-    } // format()
 
 } //  CheckboxInputFormatter class
