@@ -25,7 +25,7 @@ abstract class BaseInputFormatter implements \Informant\Formatter\FormatterInter
     public function format(\Informant\Input\BaseElement $input, $options=array()) {
         $attributes = array(
             'id' => $input->getId(),
-            'name' => $input->getId(),
+            'name' => ($input->getName() === null ? $input->getId() : $input->getName()),
             'value' => ($input->getValue() === null ? $input->getDefaultValue() : $input->getValue()),
         );
 
