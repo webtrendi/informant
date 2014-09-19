@@ -29,7 +29,7 @@ class InputGroup extends \Informant\Input\BaseElement
      * @author Patrick Forget <patforg@geekpad.ca>
      */
     public function getIterator() {
-        return new ArrayIterator($this);   
+        return new \ArrayIterator($this->inputs);   
     } // getIterator()
 
     /**

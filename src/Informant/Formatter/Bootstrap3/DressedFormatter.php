@@ -27,47 +27,63 @@ class DressedFormatter extends \Informant\Formatter\Base\BaseDressedFormatter
 
         $formatter = $options['formatter'];
         $formatterName = $options['formatterName'];
+        switch ($formatterName) {
+        case 'radioListInput':
 
+                if (!isset($options['attributes'])) {
+                    $options['attributes'] = array();
+                } //if
 
-        if ($formatterName === 'checkboxInput') {
-            $inputOptions = isset($options['inputOptions']) ? $options['inputOptions'] : array();
-            $errorOptions = isset($options['errorOptions']) ? $options['errorOptions'] : array();
-        
-            ob_start();
-
-            echo call_user_func(array($formatter, $formatterName), $input, $inputOptions );
-            echo $formatter->error($input, $errorOptions);
-
-            $content = ob_get_contents();
-            ob_end_clean();
-
-            $attributes = array(
-                'class' => 'checkbox' 
-            );
-
-            if (isset($options['attributes'])) {
-                $attributes = array_merge($attributes, $options['attributes']);
-            } //if
-
-            return h::tag('div', array(
-                'attributes' => $attributes,
-                'content' => $content,
-                'rawContent' => true
-            )) . "\n";
-
-        } else {
+                $options['attributes']  = array_merge(array(
+                    'class' => 'form-group row',
+                ), $options['attributes']);
             
-            if (!isset($options['attributes'])) {
-                $options['attributes'] = array();
-            } //if
+                return $formatter->radioListInput($input, $options);
+                break;
+            case 'checkboxInput': 
+            case 'radioInput': 
+                $inputOptions = isset($options['inputOptions']) ? $options['inputOptions'] : array();
+                $errorOptions = isset($options['errorOptions']) ? $options['errorOptions'] : array();
+            
+                ob_start();
 
-            $options['attributes']  = array_merge(array(
-                'class' => 'form-group',
-            ), $options['attributes']);
-        
-            return parent::format($input, $options);
+                echo h::tag('label', array(
+                    'content' => call_user_func(array($formatter, $formatterName), $input, $inputOptions ) . ' ' . $input->getLabel(),
+                    'rawContent' => true, 
+                ));
+                
+                echo $formatter->error($input, $errorOptions);
 
-        }//if 
+                $content = ob_get_contents();
+                ob_end_clean();
+
+                $attributes = array(
+                    'class' => substr($formatterName, 0, -5) // checkbox or radio 
+                );
+
+                if (isset($options['attributes'])) {
+                    $attributes = array_merge($attributes, $options['attributes']);
+                } //if
+
+                return h::tag('div', array(
+                    'attributes' => $attributes,
+                    'content' => $content,
+                    'rawContent' => true
+                )) . "\n";
+                break;
+            default:
+                
+                if (!isset($options['attributes'])) {
+                    $options['attributes'] = array();
+                } //if
+
+                $options['attributes']  = array_merge(array(
+                    'class' => 'form-group',
+                ), $options['attributes']);
+            
+                return parent::format($input, $options);
+                break;
+        }//switch 
 
     } // format()
 
