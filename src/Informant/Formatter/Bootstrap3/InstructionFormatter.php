@@ -1,0 +1,36 @@
+<?php
+/**
+ * Formats error messages
+ *
+ * @since  2014-05-09
+ * @author Patrick Forget <patforg@geekpad.ca>
+ */
+
+namespace Informant\Formatter\Bootstrap3;
+
+/**
+ * Formats error messages
+ *
+ * @since  2014-05-09
+ * @author Patrick Forget <patforg@geekpad.ca>
+ */
+class InstructionFormatter extends \Informant\Formatter\Base\BaseMessageFormatter
+{
+
+    /**
+     * @since  2014-05-09
+     * @author Patrick Forget <patforg@geekpad.ca>
+     */
+    protected function getMessages(\Informant\Input\BaseElement $input) {
+       return $input->getInstructions(); 
+    } // getMessages()
+
+    /**
+     * @since  2014-05-10
+     * @author Patrick Forget <patforg@geekpad.ca>
+     */
+    protected function getMessageClass() {
+        return 'text-info instruction-messages';
+    } // getMessageClass()
+
+} //  InstructionFormatter class
