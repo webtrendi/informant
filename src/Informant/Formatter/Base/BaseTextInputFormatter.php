@@ -6,9 +6,7 @@
  * @author Patrick Forget <patforg@geekpad.ca>
  */
 
-namespace Informant\Formatter\HtmlBasic;
-
-use Informant\Utility\HtmlHelper as h;
+namespace Informant\Formatter\Base;
 
 /**
  * Builds Text type input element
@@ -16,7 +14,8 @@ use Informant\Utility\HtmlHelper as h;
  * @since  2014-05-09
  * @author Patrick Forget <patforg@geekpad.ca>
  */
-class SelectInputFormatter extends \Informant\Formatter\Base\BaseSelectInputFormatter
+abstract class BaseTextInputFormatter extends BaseInputFormatter
 {
 
-} //  SelectInputFormatter class
+
+} //  BaseTextInputFormatter class

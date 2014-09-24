@@ -77,8 +77,20 @@ class FormatterContainer
      * @author Patrick Forget <patforg@geekpad.ca>
      */
     public function __call($methodName, $arguments) {
-        
-        $formatter= $this->getFormatter($methodName);
+
+        if (substr($methodName,0,7) === 'dressed') {        
+            $formatter = $this->getFormatter('dressed');
+
+            $options = isset($arguments[1]) ? $arguments[1] : array();
+
+            $options['formatter'] = $this;
+            $options['formatterName'] = lcfirst(substr($methodName,7));
+
+            $arguments[1] = $options;
+
+        } else {
+            $formatter = $this->getFormatter($methodName);
+        } //if
 
         return call_user_func_array(array($formatter, 'format'), $arguments);
     } // __call()

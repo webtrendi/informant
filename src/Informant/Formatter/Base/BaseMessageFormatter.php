@@ -6,7 +6,7 @@
  * @author Patrick Forget <patforg@geekpad.ca>
  */
 
-namespace Informant\Formatter\HtmlBasic;
+namespace Informant\Formatter\Base;
 use Informant\Utility\HtmlHelper as html;
 
 /**
@@ -15,7 +15,7 @@ use Informant\Utility\HtmlHelper as html;
  * @since  2014-05-09
  * @author Patrick Forget <patforg@geekpad.ca>
  */
-abstract class HtmlMessageFormatter implements \Informant\Formatter\FormatterInterface
+abstract class BaseMessageFormatter implements \Informant\Formatter\FormatterInterface
 {
 
     /**
@@ -81,4 +81,4 @@ abstract class HtmlMessageFormatter implements \Informant\Formatter\FormatterInt
      } // format()
 
 
-} //  HtmlMessageFormatter class
+} //  BaseMessageFormatter class

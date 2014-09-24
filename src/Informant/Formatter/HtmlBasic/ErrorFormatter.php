@@ -14,7 +14,7 @@ namespace Informant\Formatter\HtmlBasic;
  * @since  2014-05-09
  * @author Patrick Forget <patforg@geekpad.ca>
  */
-class ErrorFormatter extends HtmlMessageFormatter
+class ErrorFormatter extends \Informant\Formatter\Base\BaseMessageFormatter
 {
 
     /**

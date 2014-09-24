@@ -6,7 +6,7 @@
  * @author Patrick Forget <patforg@geekpad.ca>
  */
 
-namespace Informant\Formatter;
+namespace Informant\Formatter\Base;
 use Informant\Utility\HtmlHelper as h;
 
 /**
@@ -15,18 +15,8 @@ use Informant\Utility\HtmlHelper as h;
  * @since  2014-05-09
  * @author Patrick Forget <patforg@geekpad.ca>
  */
-class HtmlInputFormatter implements FormatterInterface
+abstract class BaseInputFormatter implements \Informant\Formatter\FormatterInterface
 {
-
-    /**
-     * class constructor
-     *
-     * @since  2014-05-09
-     * @author Patrick Forget <patforg@geekpad.ca>
-     */
-    public function __construct() {
-        
-    } // __construct()
 
     /**
      * @since  2014-05-09
@@ -54,4 +44,4 @@ class HtmlInputFormatter implements FormatterInterface
     } // format()
 
 
-} //  HtmlInputFormatter class
+} //  BaseInputFormatter class
