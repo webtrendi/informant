@@ -28,6 +28,11 @@ abstract class BaseCheckboxInputFormatter extends BaseInputFormatter
             $options['attributes'] = array();
         } //if
 
+        $value = $input->getValue();
+        if ($value !== null && $value == $input->getDefaultValue()) {
+            $options['attributes']['checked'] = 'true';
+        } //if
+
         $options['attributes']['type'] = 'checkbox';
 
         return parent::format($input, $options);
