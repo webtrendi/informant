@@ -6,7 +6,7 @@
  * @author Patrick Forget <patforg@geekpad.ca>
  */
 
-namespace Informant\Formatter\Bootstrap3;
+namespace Informant\Formatter\HtmlBasic;
 
 use Informant\Utility\HtmlHelper as h;
 
@@ -16,8 +16,7 @@ use Informant\Utility\HtmlHelper as h;
  * @since  2014-05-09
  * @author Patrick Forget <patforg@geekpad.ca>
  */
-class CheckboxInputFormatter extends \Informant\Formatter\Base\BaseCheckboxInputFormatter
+class RadioInputFormatter extends \Informant\Formatter\Base\BaseRadioInputFormatter
 {
 
-
-} //  CheckboxInputFormatter class
+} //  RadioInputFormatter class

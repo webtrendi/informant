@@ -26,6 +26,7 @@ abstract class BaseInput extends \Informant\Input\BaseElement
         if ($defaultValues === null) {
             $defaultValues = array_merge(parent::getDefaultValues(), array(
                 'required' => false,
+                'name' => null,
                 'defaultValue' => '',
                 'value' => null,
                 'multipleValues' => false,
