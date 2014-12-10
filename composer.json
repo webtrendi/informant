@@ -1,6 +1,7 @@
 {
     "name": "webtrendi/informant",
     "description": "Collection of classes to define expected input and build forms",
+    "license": "MIT",
     "autoload": {
         "psr-0": {
             "Informant\\": "src/"
