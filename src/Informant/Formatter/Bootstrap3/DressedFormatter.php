@@ -30,15 +30,42 @@ class DressedFormatter extends \Informant\Formatter\Base\BaseDressedFormatter
         switch ($formatterName) {
         case 'radioListInput':
 
+                $inputOptions = isset($options['inputOptions']) ? $options['inputOptions'] : array();
+                $errorOptions = isset($options['errorOptions']) ? $options['errorOptions'] : array();
+
                 if (!isset($options['attributes'])) {
                     $options['attributes'] = array();
                 } //if
 
                 $options['attributes']  = array_merge(array(
-                    'class' => 'form-group row',
+                    'class' => 'form-group',
                 ), $options['attributes']);
             
-                return $formatter->radioListInput($input, $options);
+                ob_start();
+
+                echo h::tag('label', array(
+                    'content' => $input->getLabel(),
+                    'rawContent' => true, 
+                ));
+                echo $formatter->radioListInput($input, $options);
+                echo $formatter->error($input, $errorOptions);
+
+                $content = ob_get_contents();
+                ob_end_clean();
+
+                $attributes = array(
+                    'class' => substr($formatterName, 0, -5) // checkbox or radio 
+                );
+
+                if (isset($options['attributes'])) {
+                    $attributes = array_merge($attributes, $options['attributes']);
+                } //if
+
+                return h::tag('div', array(
+                    'attributes' => $attributes,
+                    'content' => $content,
+                    'rawContent' => true
+                )) . "\n";
                 break;
             case 'checkboxInput': 
             case 'radioInput': 
